@@ -1,0 +1,20 @@
+char data[] = "HELLO";
+int ledPin = 7;
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  for (int i = 0; i < strlen(data); i++) {
+    sendChar(data[i]);
+    delay(500); // Space between characters
+  }
+}
+
+void sendChar(char c) {
+  for (int i = 7; i >= 0; i--) {
+    bool bit = bitRead(c, i);
+    digitalWrite(ledPin, bit ? HIGH : LOW);
+    delay(100); // Adjust for better reception
+  }
+}
